@@ -5,23 +5,67 @@ class Queue {
   }
 
   canEnqueue() {
-    // ... your code goes here
+    // return true - if not full
+    //return false - if full
+
+    let stackQueueItems = this.queueControl;
+    let amounthMax = this.MAX_SIZE
+
+    if (stackQueueItems.length < amounthMax) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isEmpty() {
-    // ... your code goes here
+    // true - empty 
+    // false - any items
+
+    let CheckQueueControl = this.queueControl
+    if (CheckQueueControl.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   enqueue(item) {
-    // ... your code goes here
+    /* to be added at the end .push() ({[ queueuControl ]})
+    - check if canEnqueue can take any items 
+    - if canEnqueue true - add
+    - if canEnqueue flase - overflow message.
+    */
+
+    let checkIfQueueIsFull = this.canEnqueue();
+
+    if (checkIfQueueIsFull === true) {
+      this.queueControl.push(item);
+      return this.queueControl;
+    } else {
+      throw new Error ("QUEUE_OVERFLOW");
+    }
   }
 
   dequeue() {
-    // ... your code goes here
+    /*/ remove first element .shift()
+    - call isEmpty 
+    - if isEmpty false - remove shift() queueControl
+    - if isEmpty true - underflow message
+    */
+
+    let checkIFQueueIsEmpty = this.isEmpty();
+
+    if (checkIFQueueIsEmpty === false) {
+      return this.queueControl.shift();
+    } else {
+      throw new Error ('QUEUE_UNDERFLOW');
+    }
   }
 
   display() {
-    // ... your code goes here
+
+    return this.queueControl;
   }  
 }
 
